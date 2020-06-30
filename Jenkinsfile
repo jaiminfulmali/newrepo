@@ -9,7 +9,7 @@ pipeline {
         stage('compare') {
             steps {
 
-                sh ''' cp b.txt d.txt '''
+                sh ''' cp /var/lib/jenkins/jobs/declarative/b.txt /var/lib/jenkins/jobs/declarative/d.txt '''
                 
             }
         }
