@@ -9,7 +9,7 @@ pipeline {
         stage('compare') {
             steps {
 
-                sh ''' ./ '''
+                sh ''' ./compare.sh '''
                 
             }
         }
