@@ -9,7 +9,7 @@ pipeline {
         stage('compare') {
             steps {
 
-                sh ''' ./compare.sh '''
+                sh ''' /var/lib/jenkins/jobs/declarative/compare.sh '''
                 
             }
         }
