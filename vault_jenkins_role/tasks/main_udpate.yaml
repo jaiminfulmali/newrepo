@@ -6,11 +6,13 @@
 
     - debug: var=ansible_default_ipv4.address
     - debug: var=artisan
+  
     - git:
         repo: "{{project_repo}}"
         dest: "{{project_root}}/{{project_type}}/{{project_name}}"
         update: yes
         force: yes
+  
     - name: Create a new database with name 'bobdata'
       mysql_db:
         name: "{{db_name}}"
@@ -19,10 +21,12 @@
         login_host: localhost
         login_port: 33066
         state: present
+  
     - name: create .env 
       template:
         src: "templates/{{project_type}}_env.j2"
         dest: "{{project_root}}/{{project_type}}/{{project_name}}/.env"
+  
     - name: run composer install
       delegate_to: "fpm{{php_version}}"
       raw: sh -c "cd {{project_root}}/{{project_type}}/{{project_name}} && composer install"
@@ -40,6 +44,7 @@
     
     - debug:
         msg: Nginx Server Name Set to {{ project_name }}.{{ ansible_default_ipv4.address }}.nip.io
+  
     - name: run command in nginx
       delegate_to: web
       raw: nginx -t
@@ -48,6 +53,7 @@
 
     - debug:
         var: nginx_test
+  
     - name: Restart a container
       command: docker restart web
       when: 
