@@ -16,10 +16,10 @@
     - name: Project type define
       delegate_to: 127.0.0.1
       shell: |
-        if [ "$( echo $( cat {{ composer_path }}) | grep laravel)" ];
+        if [ "$( cat {{ composer_path }} | grep laravel/laravel)" ];
         then
           echo "laravel"
-        elif [[ "$( echo $( cat {{ composer_path }}) | grep drupal)" ]]; then
+        elif [ "$( cat {{ composer_path }} | grep drupal/core)" ]; then
             echo "drupal"
         else
           echo "please define framework type"
