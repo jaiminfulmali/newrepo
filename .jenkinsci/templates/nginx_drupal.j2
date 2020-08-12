@@ -5,9 +5,9 @@ server {
     if ($scheme = http) {
         return 301 https://$server_name$request_uri;
     }
-     server_name cbed8.addwebprojects.com;
+     server_name {{ project_name.stdout | trim }}.{{ ansible_default_ipv4.address }}.nip.io;
         ## Your only path reference.
-        root "{{ project_root }}/{{project_type.stdout}}/{{project_name.stdout | trim }}";
+        root "{{ project_root }}/{{project_type.stdout}}/{{project_name.stdout | trim }}/web";
        
         ## This should be in your http block and if it is, it's not needed here.
         index index.php;
@@ -16,8 +16,8 @@ server {
         ssl_certificate /etc/letsencrypt/live/addwebprojects.com/fullchain.pem;
         ssl_certificate_key /etc/letsencrypt/live/addwebprojects.com/privkey.pem;
 
-        access_log /srv/logs/drupal/cbed8.addwebprojects.com/access.log;
-        error_log  /srv/logs/drupal/cbed8.addwebprojects.com/error.log;
+        access_log /srv/logs/drupal/{{ project_name.stdout | trim }}/access.log;
+        error_log  /srv/logs/drupal/{{ project_name.stdout | trim }}/error.log;
 
     location = /favicon.ico {
         log_not_found off;
