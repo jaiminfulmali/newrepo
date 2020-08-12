@@ -60,24 +60,26 @@
         dest: "{{ project_root }}/{{project_type.stdout}}/{{project_name.stdout | trim }}"
         owner: www-data
         group: www-data
-        mode: '0755'
+        mode: '0777'
         recurse: yes
       become: true
 
+
+
     - name: Composer install
-      command: composer install
+      command: docker exec -it -w $(pwd) fpm7.2 composer install
       args:
         chdir: "{{ project_root }}/{{project_type.stdout}}/{{project_name.stdout | trim }}"
       become: true
       
     - name: Composer require drush 
-      command: composer require drush/drush
+      command: docker exec -it -w $(pwd) fpm7.2 composer require drush/drush
       args:
         chdir: "{{ project_root }}/{{project_type.stdout}}/{{project_name.stdout | trim }}"
       become: true
       
     - name: drush cr
-      command: drush cr
+      command: docker exec -it -w $(pwd) fpm7.2 drush cr
       args:
         chdir: "{{ project_root }}/{{project_type.stdout}}/{{project_name.stdout | trim }}"
       become: true
