@@ -12,12 +12,12 @@ server {
         ## This should be in your http block and if it is, it's not needed here.
         index index.php;
 
-        include ssl_params.conf;
-        ssl_certificate /etc/letsencrypt/live/addwebprojects.com/fullchain.pem;
-        ssl_certificate_key /etc/letsencrypt/live/addwebprojects.com/privkey.pem;
+#        include ssl_params.conf;
+#        ssl_certificate /etc/letsencrypt/live/addwebprojects.com/fullchain.pem;
+#        ssl_certificate_key /etc/letsencrypt/live/addwebprojects.com/privkey.pem;
 
-        access_log /srv/logs/drupal/{{ project_name.stdout | trim }}/access.log;
-        error_log  /srv/logs/drupal/{{ project_name.stdout | trim }}/error.log;
+#        access_log /srv/logs/drupal/{{ project_name.stdout | trim }}/access.log;
+#        error_log  /srv/logs/drupal/{{ project_name.stdout | trim }}/error.log;
 
     location = /favicon.ico {
         log_not_found off;

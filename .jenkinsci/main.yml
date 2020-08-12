@@ -66,17 +66,17 @@
 
 
 
-    - name: Composer install
-      command: docker exec -it -w {{ project_root }}/{{project_type.stdout}}/{{project_name.stdout | trim }} fpm7.2 composer install
-      args:
-        chdir: "{{ project_root }}/{{project_type.stdout}}/{{project_name.stdout | trim }}"
-      #become: true
+    # - name: Composer install
+    #   command: docker exec -it -w {{ project_root }}/{{project_type.stdout}}/{{project_name.stdout | trim }} fpm7.2 composer install
+    #   args:
+    #     chdir: "{{ project_root }}/{{project_type.stdout}}/{{project_name.stdout | trim }}"
+    #   #become: true
       
-    - name: Composer require drush 
-      command: docker exec -it -w {{ project_root }}/{{project_type.stdout}}/{{project_name.stdout | trim }} fpm7.2 composer require drush/drush
-      args:
-        chdir: "{{ project_root }}/{{project_type.stdout}}/{{project_name.stdout | trim }}"
-     # become: true
+    # - name: Composer require drush 
+    #   command: docker exec -it -w {{ project_root }}/{{project_type.stdout}}/{{project_name.stdout | trim }} fpm7.2 composer require drush/drush
+    #   args:
+    #     chdir: "{{ project_root }}/{{project_type.stdout}}/{{project_name.stdout | trim }}"
+    #  # become: true
       
     # - name: drush cr
     #   command: docker exec -it -w {{ project_root }}/{{project_type.stdout}}/{{project_name.stdout | trim }} fpm7.2 drush cr
