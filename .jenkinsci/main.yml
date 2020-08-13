@@ -83,6 +83,16 @@
         mode: '0775'
         recurse: yes
       become: true
+
+    - name: change web directory permissions
+      file:
+        dest: "{{ project_root }}/{{project_type.stdout}}/{{project_name.stdout | trim }}/web/sites/"
+        owner: www-data
+        group: www-data
+        mode: '0775'
+        recurse: yes
+      become: true
+
       
 #     - name: create .env 
 #       template:
