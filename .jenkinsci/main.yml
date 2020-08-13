@@ -1,6 +1,6 @@
 ---
 - hosts: all
-  name: Install Laravel Project
+  name: Install Project
   gather_facts: true
   vars_files:
     - ./vars/main.yml
@@ -9,7 +9,7 @@
   pre_tasks:
     - name: add fpm containers to inventory
       include: ./container_inventory.yml
-      
+
   tasks:
     - debug: var=ansible_default_ipv4.address
     - debug: var=artisan
@@ -59,7 +59,7 @@
     - import_tasks: drupal.yml
       when: project_type.stdout == "drupal"
 
-    - import_tasks: drupal.yml
+    - import_tasks: laravel.yml
       when: project_type.stdout == "laravel"
 
 

@@ -18,7 +18,7 @@
         dest: "{{ project_root }}/{{project_type.stdout}}/{{project_name.stdout | trim }}/"
         owner: www-data
         group: www-data
-        mode: '0777'
+        mode: '0775'
         recurse: yes
       become: true
 
@@ -26,28 +26,30 @@
       command: docker exec -it -w {{ project_root }}/{{project_type.stdout}}/{{project_name.stdout | trim }} fpm7.2 composer install
       args:
         chdir: "{{ project_root }}/{{project_type.stdout}}/{{project_name.stdout | trim }}"
+      become: true
       
 
     - name: Composer require drush 
       command: docker exec -it -w {{ project_root }}/{{project_type.stdout}}/{{project_name.stdout | trim }} fpm7.2 composer require drush/drush
       args:
         chdir: "{{ project_root }}/{{project_type.stdout}}/{{project_name.stdout | trim }}"
-      
-    - name: Change permissions
-      file:
-        dest: "{{ project_root }}/{{project_type.stdout}}/{{project_name.stdout | trim }}/"
-        owner: www-data
-        group: www-data
-        mode: '0775'
-        recurse: yes
       become: true
+      
+    # - name: Change permissions
+    #   file:
+    #     dest: "{{ project_root }}/{{project_type.stdout}}/{{project_name.stdout | trim }}/"
+    #     owner: www-data
+    #     group: www-data
+    #     mode: '0775'
+    #     recurse: yes
+    #   become: true
 
     - name: change web directory permissions
       file:
         dest: "{{ project_root }}/{{project_type.stdout}}/{{project_name.stdout | trim }}/web/sites/"
         owner: www-data
         group: www-data
-        mode: '0775'
+        mode: '0777'
         recurse: yes
       become: true
 
