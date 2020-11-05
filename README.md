@@ -1,12 +1,3 @@
-hello world
-
-t1
-
-
-jaimin
-j2
-
-
 
 # Commerce 2.x demo project template
 
